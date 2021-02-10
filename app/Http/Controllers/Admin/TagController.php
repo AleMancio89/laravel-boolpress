@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Auth;
+use App\Tag;
 
-class TestController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $tags= Tag::all();
+
+        return view('tags.index', compact('tags'));
     }
 
     /**
@@ -45,9 +48,9 @@ class TestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
-        //
+        return view('tags.show', compact('tag'));
     }
 
     /**
@@ -83,27 +86,4 @@ class TestController extends Controller
     {
         //
     }
-
-    public function guest(){
-
-        return view("hello");
-
-    }
-
-    public function logged(){
-
-        $user = Auth::user();
-
-        return view("hello",compact("user"));
-
-    }
-
-    public function prova(){
-
-        $user = Auth::user();
-
-        return view("prova",compact("user"));
-
-    }
-
 }

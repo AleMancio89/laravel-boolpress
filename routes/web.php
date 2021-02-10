@@ -21,10 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('free-zone/hello')->group(function(){
-    Route::get('/', 'TestController@guest')->name("freezone");
-});
-
-Route::prefix('restricted-zone/hello')->middleware('auth')->group(function(){
-    Route::get('/', 'TestController@logged')->name('restricted');
+Route::prefix('auth')->namespace('Admin')->middleware('auth')->group(function(){
+    Route::resource('/posts', 'PostController');
+    Route::resource('/tags', 'TagController');
 });
