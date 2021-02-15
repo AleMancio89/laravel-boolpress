@@ -13,8 +13,10 @@
                     <th scope="col">Categoria</th>
                     <th scope="col">Descrizione</th>
                     <th scope="col">Tags</th>
-                    <th scope="col">Modifica</th>
-                    <th scope="col">Elimina</th>
+                    @auth
+                        <th scope="col">Modifica</th>
+                        <th scope="col">Elimina</th>
+                    @endauth
                 </tr>
             </thead>
             <tbody>
@@ -30,16 +32,18 @@
                         <br/>
                     @endforeach
                     </td>
-                    <td>
-                        <a class="btn btn-primary bg-gradient" href="{{ route('posts.edit', $post) }}">Modifica</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('posts.destroy', $post) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <input class ="btn btn-danger" value="Elimina" type="submit">
-                        </form>
-                    </td>
+                    @auth
+                        <td>
+                            <a class="btn btn-primary bg-gradient" href="{{ route('posts.edit', $post) }}">Modifica</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('posts.destroy', $post) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input class ="btn btn-danger" value="Elimina" type="submit">
+                            </form>
+                        </td>
+                    @endauth
                 </tr>
                 @endforeach
             </tbody>

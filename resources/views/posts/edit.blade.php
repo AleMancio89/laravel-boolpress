@@ -41,7 +41,9 @@
             <label class="form-check-label">{{ $tag->name }}</label>
         </div>
         @endforeach
-        <button type="submit" class="btn btn-primary">Aggiorna</button>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Aggiorna</button>
+        </div>
     </form>
 </div>
 @endsection
